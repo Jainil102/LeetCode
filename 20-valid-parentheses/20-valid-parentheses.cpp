@@ -18,9 +18,6 @@ public:
                 }
             }
         }
-        if(S.empty()){
-            return true;
-        }
-        return false;
+        return S.empty();
     }
 };
