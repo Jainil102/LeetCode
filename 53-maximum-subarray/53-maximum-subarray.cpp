@@ -9,13 +9,15 @@ public:
                 maxSum = currSum;
             }
             if(currSum <= 0){
-                if(nums[i] > maxSum){
-                    maxSum = nums[i];
-                    currSum = nums[i];
-                }
-                else{
-                    currSum = 0;
-                }
+                // if(nums[i] > maxSum){
+                //     maxSum = nums[i];
+                //     currSum = nums[i];
+                // }
+                // else{
+                //     currSum = 0;
+                // }
+                currSum = max(0, nums[i]);
+                maxSum = max(maxSum, nums[i]);
             }
         }
         return maxSum;
