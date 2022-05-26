@@ -1,14 +1,5 @@
 class Solution {
 public:
-    void reverse(vector<int>& nums, int start) {
-        int i = start, j = nums.size() - 1;
-        while (i < j) {
-            swap(nums[i], nums[j]);
-            i++;
-            j--;
-        }
-    }
-    
     void nextPermutation(vector<int>& nums) {
         int isPermuted = 0;
         int n = nums.size();
@@ -32,4 +23,13 @@ public:
             reverse(nums, 0);
         }
     }
+    void reverse(vector<int>& nums, int start) {
+        int i = start, j = nums.size() - 1;
+        while (i < j) {
+            swap(nums[i], nums[j]);
+            i++;
+            j--;
+        }
+    }
+    
 };
