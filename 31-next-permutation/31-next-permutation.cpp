@@ -1,5 +1,14 @@
 class Solution {
 public:
+    void reverse(vector<int>& nums, int start) {
+        int i = start, j = nums.size() - 1;
+        while (i < j) {
+            swap(nums[i], nums[j]);
+            i++;
+            j--;
+        }
+    }
+    
     void nextPermutation(vector<int>& nums) {
         int isPermuted = 0;
         int n = nums.size();
@@ -8,19 +17,19 @@ public:
                 int max = INT_MAX;
                 int max_id = -1;
                 for(int j=i; j<n; j++){
-                    if(nums[j] > nums[i-1] && nums[j] < max){
+                    if(nums[j] > nums[i-1] && nums[j] <= max){
                         max = nums[j];
                         max_id = j;
                     }
                 }
                 swap(nums[i-1], nums[max_id]);
-                sort(nums.begin()+i, nums.end());
+                reverse(nums, i);
                 isPermuted = 1;
                 break;
             }
         }
         if(isPermuted == 0){
-            sort(nums.begin(), nums.end());
+            reverse(nums, 0);
         }
     }
 };
