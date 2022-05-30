@@ -15,17 +15,14 @@ public:
             return head;
         }
         
-        ListNode* curr = head;
-        ListNode* prev = NULL;
-        ListNode* next;
-        
-        while(curr != NULL){
-            next = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = next;
-        }
-        
-        return prev;        
+        ListNode* newHead;
+        if(head->next == NULL){
+            newHead = head;
+            return newHead;
+        }      
+        newHead = reverseList(head->next);
+        (head->next)->next = head;
+        head->next = NULL;
+        return newHead;
     }
 };
