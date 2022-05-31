@@ -18,19 +18,19 @@ public:
             fast = fast->next;
         }
         
-        ListNode* prev = head;
-        while(fast != NULL){
-            prev = slow;
+        // when n == length of LL
+        if(!fast){
+            head = head->next;
+            return head;
+        }
+        
+        while(fast->next != NULL){
             slow = slow->next;
             fast = fast->next;
         }
         
-        if(slow == head){
-            head = head->next;
-        }
-        else{
-            prev->next = slow->next;
-        }
+        slow->next = (slow->next)->next;
+        
         return head;
     }
 };
