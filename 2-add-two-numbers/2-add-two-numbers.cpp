@@ -12,49 +12,27 @@ class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         int carry = 0;
-        ListNode* t1 = l1;
-        ListNode* t2 = l2;
-        ListNode* p1 = l1;
-        ListNode* p2 = l2;
-        int c1=0,c2=0;
-        while(l1 != NULL || l2 != NULL){
-            int a = carry;
-            if(l1){
-                a += l1->val;
-            }
-            if(l2){
-                a += l2->val;
-            }
-            carry = (a - (a%10))/10;
+        int a = 0;
+        ListNode head(0);
+        ListNode* curr = &head;
+        while(l1!=NULL || l2!=NULL){
+            int x = (l1 != NULL) ? l1->val : 0;
+            int y = (l2 != NULL) ? l2->val : 0;
+            a = x + y + carry;
+            carry = a/10;
             a = a%10;
             
-            if(l1){
-                l1->val = a;
-                p1 = l1;
-                l1 = l1->next;
-                c1++;
-            }
-            if(l2){
-                l2->val = a;
-                p2 = l2;
-                l2 = l2->next;
-                c2++;
-            }
-            if(!l1 && !l2 && carry!=0){
-                ListNode* temp = new ListNode();
-                temp->val = carry;
-                temp->next = NULL;
-                p1->next = temp;
-                p2->next = temp;
-            }
+            curr->next = new ListNode(a);
+            curr = curr->next;
+                        
+            if(l1!=NULL) l1 = l1->next;
+            if(l2!=NULL) l2 = l2->next;
         }
-        ListNode* ans;
-        if(c1>=c2){
-            ans = t1;
+        
+        if(carry > 0){
+            curr->next = new ListNode(carry);
         }
-        else{
-            ans = t2;
-        }
-        return ans;
+        
+        return head.next;
     }
 };
