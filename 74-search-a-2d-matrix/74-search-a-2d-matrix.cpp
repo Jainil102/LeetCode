@@ -4,10 +4,6 @@ public:
         int n = matrix.size();
         int m = matrix[0].size();
         
-        if(target < matrix[0][0] || target > matrix[n-1][m-1]){
-            return false;
-        }
-        
         int l = 0;
         int h = m*n - 1;
         int m1,i,j;
