@@ -9,47 +9,23 @@ public:
         }
         
         int l = 0;
-        int h = n-1;
-        int m1;
-        while(true){
+        int h = m*n - 1;
+        int m1,i,j;
+        while(l <= h){
             m1 = l + (h-l)/2;
-            if(target == matrix[m1][0]){
+            i = m1/m;
+            j = m1%m;
+            
+            if(target == matrix[i][j]){
                 return true;
             }
-            else if(target > matrix[m1][0]){
-                if(m1 == n-1){
-                    break;
-                }
-                if(target < matrix[m1+1][0]){
-                    break;
-                }         
+            else if(target > matrix[i][j]){         
                 l = m1 + 1;
             }
             else{
-                if(m1 == 0){
-                    break;
-                }
-                if(target > matrix[m1-1][0]){
-                    m1--;
-                    break;
-                }
                 h = m1 - 1;
             }
         }
-        
-        int l2 = 0;
-        int h2 = m-1;
-        int m2;
-        while(l2 <= h2){
-            m2 = l2 + (h2-l2)/2;
-            if(matrix[m1][m2] == target)
-                return true;
-            else if(matrix[m1][m2] > target)
-                h2 = m2 - 1;
-            else
-                l2 = m2 + 1;
-        }
-        
         return false;
     }
 };
