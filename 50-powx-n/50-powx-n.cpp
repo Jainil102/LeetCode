@@ -1,20 +1,8 @@
 class Solution {
 public:
     double myPow(double x, int n) {
-        if(x == 0.0){
-            return 0.0;
-        }
-        if(x == 1.0 || n == 0.0){
+        if(n == 0.0){
             return 1.0;
-        }
-        if(n == 1.0){
-            return x; 
-        }
-        if(x == -1.0){
-            if(n%2 == 0)
-                return 1.0;
-            else
-                return -1.0;
         }
         
         int isNeg = 0;
