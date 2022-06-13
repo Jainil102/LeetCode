@@ -17,18 +17,8 @@ public:
         ListNode* tb = headB;
         
         while(ta != tb){
-            if(ta == NULL){
-                ta = headB;
-            }
-            else{
-                ta = ta->next;
-            }
-            if(tb == NULL){
-                tb = headA;
-            }
-            else{
-                tb = tb->next;                
-            }
+            ta = ta == NULL ? headB : ta->next;
+            tb = tb == NULL ? headA : tb->next;
         }
         
         return ta;
