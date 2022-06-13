@@ -9,33 +9,43 @@
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        ListNode* t1 = headA;
-        ListNode* t2 = headB;
-        vector<ListNode*> a1;
-        vector<ListNode*> a2;
+        int n = 0;
+        int m = 0;
+        ListNode* ta = headA;
+        ListNode* tb = headB;
+        while(ta != NULL){
+            ta = ta->next;
+            n++;
+        }
+        while(tb != NULL){
+            tb = tb->next;
+            m++;
+        }
         
-        while(t1 != NULL){
-            a1.push_back(t1);
-            t1 = t1->next;
+        int diff = abs(m-n);
+        ta = headA;
+        tb = headB;
+        if(n>m){
+            while(diff > 0){
+                ta = ta->next;
+                diff--;  
+            }
         }
-        while(t2 != NULL){
-            a2.push_back(t2);
-            t2 = t2->next;
+        else{
+            while(diff > 0){
+                tb = tb->next;
+                diff--;  
+            }
         }
         
-        while(a1.back() == a2.back()){
-            a1.pop_back();
-            a2.pop_back();
-            if(a1.size() == 0 && a2.size() != 0){
-                return headA;
+        while(ta != NULL){
+            if(ta == tb){
+                return ta;
             }
-            if(a1.size() != 0 && a2.size() == 0){
-                return headB;
-            }
-            if(a1.size() == 0 && a2.size() == 0){
-                return headA;
-            }
+            ta = ta->next;
+            tb = tb->next;
         }
-        return a1.back()->next;
+        
+        return NULL;
     }
 };
