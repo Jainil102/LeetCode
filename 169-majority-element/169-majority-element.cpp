@@ -9,10 +9,10 @@ public:
             }
             else{
                 ele_count--;
-            }
-            if(ele_count == 0){
-                ele = nums[i];
-                ele_count = 1;
+                if(ele_count == 0){
+                    ele = nums[i];
+                    ele_count = 1;
+                }
             }
         }
         return ele;
