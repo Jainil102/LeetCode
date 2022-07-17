@@ -3,7 +3,7 @@ public:
     
     void solve(string s, int i, string temp, vector<string> ds, vector<vector<string>> &ans){
         if(i == s.length()-1){
-            temp += s[i];
+            temp.push_back(s[i]);
             int n = temp.length();
             for(int j=0; j<n/2; j++){
                 if(temp[j] != temp[n-j-1]){
@@ -15,7 +15,7 @@ public:
             return;
         }
         
-        temp += s[i];
+        temp.push_back(s[i]);
         solve(s, i+1, temp, ds, ans);
         int n = temp.length();
         for(int j=0; j<n/2; j++){
