@@ -1,36 +1,34 @@
 class Solution {
 public:
     
-    void solve(string s, int i, string temp, vector<string> ds, vector<vector<string>> &ans){
-        if(i == s.length()-1){
-            temp.push_back(s[i]);
-            int n = temp.length();
-            for(int j=0; j<n/2; j++){
-                if(temp[j] != temp[n-j-1]){
-                    return;
-                }
+    bool isPal(string str, int s, int t){
+        while(s < t){
+            if(str[s++] != str[t--]){
+                return false;
             }
-            ds.push_back(temp);
+        }
+        return true;
+    }
+    
+    void solve(string s, int ind, vector<string> ds, vector<vector<string>> &ans){
+        if(ind == s.length()){
             ans.push_back(ds);
             return;
         }
         
-        temp.push_back(s[i]);
-        solve(s, i+1, temp, ds, ans);
-        int n = temp.length();
-        for(int j=0; j<n/2; j++){
-            if(temp[j] != temp[n-j-1]){
-                return;
+        for(int i=ind; i<s.length(); i++){
+            if(isPal(s, ind, i)){
+                ds.push_back(s.substr(ind, i-ind+1));
+                solve(s, i+1, ds, ans);
+                ds.pop_back();
             }
         }
-        ds.push_back(temp);
-        solve(s, i+1, "", ds, ans);
     }
     
     vector<vector<string>> partition(string s) {
-        vector<vector<string>> ans;
         vector<string> ds;
-        solve(s, 0, "", ds, ans);
+        vector<vector<string>> ans;
+        solve(s, 0, ds, ans);
         return ans;
     }
 };
