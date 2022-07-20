@@ -14,10 +14,7 @@ public:
         }
         int a = q.front();
         q.pop();
-        while(!temp.empty()){
-            q.push(temp.front());
-            temp.pop();
-        }
+        temp.swap(q);
         return a;
     }
     
