@@ -17,7 +17,9 @@ public:
             output.push(input.top());
             input.pop();
         }
-        return pop();
+        int a = output.top();
+        output.pop();
+        return a;
     }
     
     int peek() {
@@ -28,7 +30,7 @@ public:
             output.push(input.top());
             input.pop();
         }
-        return peek();
+        return output.top();
     }
     
     bool empty() {
