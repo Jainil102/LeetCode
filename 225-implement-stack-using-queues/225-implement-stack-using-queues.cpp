@@ -1,20 +1,19 @@
 class MyStack {
 public:
     queue<int> q;
-    queue<int> temp;
     
     void push(int x) {
         q.push(x);        
     }
     
     int pop() {
-        while(q.size() != 1){
-            temp.push(q.front());
+        int a = q.back();
+        int count = q.size();
+        for(int i=0; i<count-1; i++){
+            q.push(q.front());
             q.pop();
         }
-        int a = q.front();
         q.pop();
-        temp.swap(q);
         return a;
     }
     
