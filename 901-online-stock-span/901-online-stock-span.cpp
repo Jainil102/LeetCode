@@ -4,14 +4,9 @@ public:
     
     int next(int price) {
         int ans = 1;
-        while(!s.empty()){
-            if(s.top().first <= price){
-                ans += s.top().second;
-                s.pop();
-            }
-            else{
-                break;
-            }
+        while(!s.empty() && s.top().first <= price){
+            ans += s.top().second;
+            s.pop();
         }
         s.push({price, ans});
         return ans;
