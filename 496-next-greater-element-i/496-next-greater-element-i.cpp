@@ -7,17 +7,15 @@ public:
             while(!s.empty()){
                 if(s.top() > nums2[i]){
                     m[nums2[i]] = s.top();
-                    s.push(nums2[i]);
                     break;
                 }
                 s.pop();
             }
             if(s.empty()){
                 m[nums2[i]] = -1;
-                s.push(nums2[i]);
             }
+            s.push(nums2[i]);
         }
-        
         vector<int> ans;
         for(int i=0; i<nums1.size(); i++){
             ans.push_back(m[nums1[i]]);
