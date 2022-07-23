@@ -3,12 +3,12 @@ public:
     
     vector<int> NSR(vector<int> arr){
         vector<int> ans;
-        stack<pair<int,int>> s;
+        stack<int> s;
         int n = arr.size();
         for(int i=n-1; i>=0; i--){
             while(!s.empty()){
-                if(s.top().first < arr[i]){
-                    ans.push_back(s.top().second);
+                if(arr[s.top()] < arr[i]){
+                    ans.push_back(s.top());
                     break;
                 }
                 s.pop();
@@ -16,7 +16,7 @@ public:
             if(s.empty()){
                 ans.push_back(n);
             }   
-            s.push({arr[i], i});
+            s.push(i);
         }
         reverse(ans.begin(), ans.end());
         return ans;
@@ -24,11 +24,11 @@ public:
     
     vector<int> NSL(vector<int> arr){
         vector<int> ans;
-        stack<pair<int,int>> s;
+        stack<int> s;
         for(int i=0; i<arr.size(); i++){
             while(!s.empty()){
-                if(s.top().first < arr[i]){
-                    ans.push_back(s.top().second);
+                if(arr[s.top()] < arr[i]){
+                    ans.push_back(s.top());
                     break;
                 }
                 s.pop();
@@ -36,7 +36,7 @@ public:
             if(s.empty()){
                 ans.push_back(-1);
             }   
-            s.push({arr[i], i});
+            s.push(i);
         }
         return ans;
     }
