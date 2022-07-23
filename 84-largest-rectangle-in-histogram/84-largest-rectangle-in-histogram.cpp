@@ -46,13 +46,10 @@ public:
         vector<int> nsr;
         nsl = NSL(heights);
         nsr = NSR(heights);
+        
+        int ans = INT_MIN;
         for(int i=0; i<nsr.size(); i++){
-            nsr[i] = nsr[i] - nsl[i] - 1;
-            nsr[i] *= heights[i];
-        }
-        int ans = nsr[0];
-        for(int i=1; i<nsr.size(); i++){
-            ans = max(ans, nsr[i]);
+            ans = max(ans, (nsr[i] - nsl[i] - 1)*heights[i]);
         }
         return ans;
     }
