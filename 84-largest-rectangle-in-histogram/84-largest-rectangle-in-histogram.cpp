@@ -1,56 +1,33 @@
 class Solution {
 public:
-    
-    vector<int> NSR(vector<int> arr){
-        vector<int> ans;
-        stack<int> s;
-        int n = arr.size();
-        for(int i=n-1; i>=0; i--){
-            while(!s.empty()){
-                if(arr[s.top()] < arr[i]){
-                    ans.push_back(s.top());
-                    break;
-                }
-                s.pop();
-            }
-            if(s.empty()){
-                ans.push_back(n);
-            }   
-            s.push(i);
-        }
-        reverse(ans.begin(), ans.end());
-        return ans;
-    }
-    
-    vector<int> NSL(vector<int> arr){
-        vector<int> ans;
-        stack<int> s;
-        for(int i=0; i<arr.size(); i++){
-            while(!s.empty()){
-                if(arr[s.top()] < arr[i]){
-                    ans.push_back(s.top());
-                    break;
-                }
-                s.pop();
-            }
-            if(s.empty()){
-                ans.push_back(-1);
-            }   
-            s.push(i);
-        }
-        return ans;
-    }
-    
     int largestRectangleArea(vector<int>& heights) {
-        vector<int> nsl;
-        vector<int> nsr;
-        nsl = NSL(heights);
-        nsr = NSR(heights);
-        
-        int ans = INT_MIN;
-        for(int i=0; i<nsr.size(); i++){
-            ans = max(ans, (nsr[i] - nsl[i] - 1)*heights[i]);
+        int maxA = 0;
+        stack<int> s;
+        int n = heights.size();
+        for(int i=0; i<n; i++){
+            if(s.empty() || heights[i] > heights[s.top()]){
+                s.push(i);
+                continue;
+            }
+            
+            int currA;
+            while(!s.empty() && heights[s.top()] > heights[i]){
+                int currH = heights[s.top()];
+                s.pop();
+                int li = s.empty() ? -1 : s.top();
+                currA = currH * (i - li - 1);
+                maxA = max(maxA, currA);
+            }
+            s.push(i);
         }
-        return ans;
+        int currA;
+        while(!s.empty()){
+            int currH = heights[s.top()];
+            s.pop();
+            int li = s.empty() ? -1 : s.top();
+            currA = currH * (n - li - 1);
+            maxA = max(maxA, currA);
+        }
+        return maxA;
     }
 };
