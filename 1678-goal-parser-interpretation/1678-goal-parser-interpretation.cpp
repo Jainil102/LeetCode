@@ -6,17 +6,13 @@ public:
             if(command[i] == 'G'){
                 ans.push_back('G');
             }
-            else{
-                i++;
-                if(command[i] == ')'){
+            else if(command[i] == '('){
+                if(command[++i] == ')'){
                     ans.push_back('o');
                 }
                 else{
                     ans.push_back('a');
                     ans.push_back('l');
-                    while(command[i] != ')'){
-                        i++;
-                    }      
                 }
             }
         }
