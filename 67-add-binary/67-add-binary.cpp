@@ -2,24 +2,13 @@ class Solution {
 public:
     string addBinary(string a, string b) {
         string ans;
-        int n = a.length();
-        int m = b.length();
-        int diff = abs(n-m);
-        if(n < m){
-            for(int i=1; i<=diff; i++){
-                a.insert(0, "0");
-            }
-            n = m;
-        }
-        else{
-            for(int i=1; i<=diff; i++){
-                b.insert(0, "0");
-            }
-        }
-        
         int carry = 0;
-        for(int i=n-1; i>=0; i--){
-            int p = a[i] - '0' + b[i] - '0' + carry;
+        int i = a.length() - 1;
+        int j = b.length() - 1;
+        while(i>=0 || j>=0){
+            int p = (i>=0) ? a[i--]-'0' : 0;
+            int q = (j>=0) ? b[j--]-'0' : 0;
+            p = p + q + carry;
             if(p == 2){
                 carry = 1;
                 p = 0;
