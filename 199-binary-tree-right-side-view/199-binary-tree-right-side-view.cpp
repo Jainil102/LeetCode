@@ -30,7 +30,18 @@ public:
         vector<int> ans;
         if(!root) return ans;
         int maxLvl = 0;
-        solve(root, ans, 0, &maxLvl);
+        stack<pair<TreeNode*, int>> s;
+        s.push({root,0});
+        while(!s.empty()){
+            pair<TreeNode*,int> temp = s.top();
+            s.pop();
+            if(temp.second == maxLvl){
+                ans.push_back(temp.first->val);
+                maxLvl++;
+            }
+            if(temp.first->left) s.push({temp.first->left, temp.second + 1});
+            if(temp.first->right) s.push({temp.first->right, temp.second + 1});
+        }
         return ans;
     }
 };
