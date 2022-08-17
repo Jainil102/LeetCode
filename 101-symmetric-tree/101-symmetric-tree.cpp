@@ -13,14 +13,11 @@ class Solution {
 public:
     bool solve(TreeNode* left, TreeNode* right){
         if(!left || !right){
-            if(left != right) return false;
-            return true;
+            return left==right;
         }
         if(left->val != right->val) return false;
         
-        if(!solve(left->right, right->left)) return false;
-        if(!solve(left->left, right->right)) return false;
-        return true;
+        return solve(left->right, right->left) && solve(left->left, right->right);
     }
         
     bool isSymmetric(TreeNode* root) {
