@@ -9,41 +9,23 @@
  */
 class Solution {
 public:
-    int solve(TreeNode* node, TreeNode* p, TreeNode* q, TreeNode* &ans){
-        if(node == NULL){
-            return NULL;
-        }
-        
-        int a = solve(node->left, p, q, ans);
-        if(a == 2) return 2;
-        int b = solve(node->right, p, q, ans);
-        if(b == 2) return 2;
-        
-        if(!a && !b){
-            if(node == p || node == q){
-                return 1;
-            }    
-            return 0;
-        }   
-        
-        if(a && b){
-            ans = node;
-            return 2;
-        }
-        
-        if(node == p || node == q){
-            ans = node;
-            return 2;
-        }   
-        else{
-            return 1;
-        }
-        return 0;
-    }
     
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        TreeNode* ans = NULL;
-        solve(root, p, q, ans);
-        return ans;
+        if(root == NULL || root == p || root == q){
+            return root;
+        }
+        
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        
+        if(!left){
+            return right;
+        }
+        else if(!right){
+            return left;
+        }
+        else{
+            return root;
+        }
     }
 };
