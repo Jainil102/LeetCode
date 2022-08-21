@@ -2,17 +2,10 @@ class Solution {
 public:
     
     double myPow(double x, int n) {
-        if(n == 0.0) return 1.0;
-        if(x == 0.0) return 0.0;
-        if(x == 1.0) return 1.0;
-        
-        int isNeg = 0;
         long m = n;
         if(m < 0){
-            m = abs(n);
-            isNeg = 1;            
+            m = -m;
         }
-        
         double ans = 1.0;
         while(m > 0){
             if(m%2 == 0){
@@ -25,7 +18,7 @@ public:
             }
         }
 
-        if(isNeg){
+        if(n<0){
             ans = 1/ans;
         }
         
