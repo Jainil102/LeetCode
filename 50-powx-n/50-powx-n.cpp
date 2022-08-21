@@ -1,18 +1,19 @@
 class Solution {
 public:
+    
     double myPow(double x, int n) {
-        if(n == 0.0){
-            return 1.0;
-        }
+        if(n == 0.0) return 1.0;
+        if(x == 0.0) return 0.0;
+        if(x == 1.0) return 1.0;
         
         int isNeg = 0;
         long m = n;
-        if(n < 0){
-            isNeg = 1;
+        if(m < 0){
             m = abs(n);
+            isNeg = 1;            
         }
-        double ans = 1.0;
         
+        double ans = 1.0;
         while(m > 1){
             if(m%2 == 0){
                 x = x*x;
@@ -25,8 +26,10 @@ public:
         }
         
         ans = ans*x;
-        if(isNeg)
+        if(isNeg){
             ans = 1/ans;
+        }
+        
         return ans;
     }
 };
