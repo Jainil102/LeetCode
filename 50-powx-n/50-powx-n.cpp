@@ -14,7 +14,7 @@ public:
         }
         
         double ans = 1.0;
-        while(m > 1){
+        while(m > 0){
             if(m%2 == 0){
                 x = x*x;
                 m = m/2;
@@ -24,8 +24,7 @@ public:
                 m--;
             }
         }
-        
-        ans = ans*x;
+
         if(isNeg){
             ans = 1/ans;
         }
