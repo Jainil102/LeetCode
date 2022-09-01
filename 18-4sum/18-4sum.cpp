@@ -6,7 +6,6 @@ public:
         vector<int> arr(4);
         sort(nums.begin(), nums.end());
         for(int i=0; i<n; i++){
-            int temp = nums[i];
             for(int j=i+1; j<n; j++){
                 long newTarget = (long)target - nums[i] - nums[j];
                 arr[0] = nums[i];
@@ -18,17 +17,15 @@ public:
                         arr[2] = nums[p];
                         arr[3] = nums[q];
                         ans.push_back(arr);
-                        while(p<n && nums[p] == arr[2]) p++;
-                        while(q>=0 && nums[q] == arr[3]) q--;
+                        while(p<q && nums[p] == arr[2]) p++;
+                        while(p<q && nums[q] == arr[3]) q--;
                     }
                     else if(nums[p] + nums[q] < newTarget) p++;
                     else q--;
                 }
-                while(j<n && nums[j] == arr[1]) j++;
-                j--;
+                while(j<n-1 && nums[j] == nums[j+1]) j++;
             }
-            while(i<n && nums[i] == temp) i++;
-            i--;
+            while(i<n-1 && nums[i] == nums[i+1]) i++;
         }
         return ans;
     }
