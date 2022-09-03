@@ -10,9 +10,9 @@ public:
             maxx = max(maxx,i);
         }
         
-        long long total_of_min = total - maxx;
-        if(maxx > total_of_min){
-            long long ans = 2*total_of_min + 1;
+        long long rest_total = total - maxx;
+        if(maxx > rest_total){
+            long long ans = 2*rest_total + 1;
             return ans;
         }
         
