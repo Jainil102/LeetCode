@@ -15,13 +15,6 @@ public:
             long long ans = 2*rest_total + 1;
             return ans;
         }
-        
-        long long x = ceil(total/2.0);
-        for(int i : milestones){
-            if(i > x){
-                total -= i-x;
-            }
-        }
                 
         return total;
     }
