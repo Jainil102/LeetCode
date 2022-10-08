@@ -1,19 +1,15 @@
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
-        vector<vector<int>> pt;
+        vector<vector<int>> ans;
+        vector<int> temp;
         for(int i=1; i<=numRows; i++){
-            vector<int> row;
-            for(int j=1; j<=i; j++){
-                if(j==1 || j==i){
-                    row.push_back(1);
-                }
-                else{
-                    row.push_back(pt[i-2][j-1] + pt[i-2][j-2]);
-                }
+            for(int j=i-2; j>0; j--){
+                temp[j] += temp[j-1];
             }
-            pt.push_back(row);
+            temp.push_back(1);
+            ans.push_back(temp);
         }
-        return pt;
+        return ans;
     }
 };
