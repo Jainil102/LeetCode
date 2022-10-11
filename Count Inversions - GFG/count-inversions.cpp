@@ -6,9 +6,8 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
   public:
-    long long ans = 0;
-  
-    void merge(long long arr[], long long start, long long mid, long long end){
+    long long merge(long long arr[], long long start, long long mid, long long end){
+        long long ans = 0;
         vector<long long> temp;
         int i=start, j=mid+1;
         while(i<=mid && j<=end){
@@ -29,22 +28,20 @@ class Solution{
         for(int i=start; i<=end; i++){
             arr[i] = temp[i-start];
         }
+        return ans;
     }
     
-    void mergeSort(long long arr[], long long start, long long end){
+    long long mergeSort(long long arr[], long long start, long long end){
         if(start >= end){
-            return;
+            return 0;
         }
         
         long long mid = start + (end-start)/2;
-        mergeSort(arr, start, mid);
-        mergeSort(arr, mid+1, end);
-        merge(arr, start, mid, end);
+        return mergeSort(arr, start, mid) + mergeSort(arr, mid+1, end) + merge(arr, start, mid, end);
     }
   
     long long int inversionCount(long long arr[], long long N){
-        mergeSort(arr, 0, N-1);
-        return ans;
+        return mergeSort(arr, 0, N-1);
     }
 
 };
