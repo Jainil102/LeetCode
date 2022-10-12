@@ -1,10 +1,8 @@
 class Solution {
 public:
     double myPow(double x, int m) {
-        int isNeg = 0;
         long long n = m;
         if(m<0){
-            isNeg = 1;
             n = -1*(long long)m;
         }
         double ans = 1;
@@ -18,7 +16,7 @@ public:
                 n = n-1;
             }
         }
-        if(isNeg){
+        if(m < 0){
             ans = 1/ans;   
         }
         return ans;
