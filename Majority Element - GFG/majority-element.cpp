@@ -16,12 +16,15 @@ class Solution{
         for(int i=1; i<size; i++){
             if(count == 0){
                 ele = a[i];
+                count = 1;
             }
-            if(a[i] == ele){
-                count++;
-            }
-            else{
-                count--;
+            else {
+                if(a[i] == ele){
+                    count++;
+                }
+                else{
+                    count--;
+                }
             }
         }
         
