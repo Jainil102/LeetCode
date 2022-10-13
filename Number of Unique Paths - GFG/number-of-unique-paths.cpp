@@ -10,8 +10,13 @@ class Solution
 {
     public:
     int NumberOfPath(int a, int b){
-        if(a==1 || b==1) return 1;
-        return NumberOfPath(a,b-1) + NumberOfPath(a-1,b);
+        vector<int> arr(a,1);
+        for(int i=0; i<b-1; i++){
+            for(int j=a-2; j>=0; j--){
+                arr[j] += arr[j+1];
+            }
+        }
+        return arr[0];
     }
 };
 
