@@ -3,9 +3,19 @@ public:
     int pairs = 0;
     
     void merge(vector<int>& nums, int start, int mid, int end){
-        int temp[end-start+1];
         int i = start;
         int j = mid+1;
+        while(i<=mid){
+            while(j<=end && nums[i] > (long)2*nums[j]){
+                j++;
+            }
+            i++;
+            pairs += j - mid - 1;
+        }   
+        
+        int temp[end-start+1];
+        i = start;
+        j = mid+1;
         int k = 0;
         while(i<=mid && j<=end){
             if(nums[i] < nums[j]){
@@ -33,20 +43,7 @@ public:
         
         int mid = start + (end-start)/2;
         mergeSort(nums, start, mid);
-        mergeSort(nums, mid+1, end);
-        
-        int i = start;
-        int j = mid+1;
-        int count = 0;
-        while(i<=mid){
-            while(j<=end && nums[i] > (long)2*nums[j]){
-                count++;
-                j++;
-            }
-            i++;
-            pairs += count;
-        }       
-        
+        mergeSort(nums, mid+1, end);    
         merge(nums, start, mid, end);
     }
     
