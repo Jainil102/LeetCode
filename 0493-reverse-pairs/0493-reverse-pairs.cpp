@@ -3,18 +3,16 @@ public:
     int pairs = 0;
     
     void merge(vector<int>& nums, int start, int mid, int end){
-        int i = start;
         int j = mid+1;
-        while(i<=mid){
+        for(int i=start; i<=mid; i++) {
             while(j<=end && nums[i] > (long)2*nums[j]){
                 j++;
             }
-            i++;
             pairs += j - mid - 1;
         }   
         
         int temp[end-start+1];
-        i = start;
+        int i = start;
         j = mid+1;
         int k = 0;
         while(i<=mid && j<=end){
