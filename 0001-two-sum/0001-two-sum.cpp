@@ -5,11 +5,11 @@ public:
         vector<int> ans;
         for(int i=0; i<nums.size(); i++){
             if(umap.find(target-nums[i]) == umap.end()){
-                umap.insert({nums[i], i});
+                umap[nums[i]] = i;
             }
             else{
-                ans.push_back(umap[target-nums[i]]);
-                ans.push_back(i);
+                ans.emplace_back(umap[target-nums[i]]);
+                ans.emplace_back(i);
                 return ans;
             }
         }
