@@ -14,13 +14,13 @@ class Solution{
         unordered_map<long,int> umap;
         long total = 0;
         int ans = 0;
-        for(int i=n-1; i>=0; i--){
+        for(int i=0; i<n; i++){
             total += A[i];
-            if(total == 0) ans = max(ans, n-i);
+            if(total == 0) ans = max(ans, i+1);
             else {
                 if(umap.find(total) == umap.end()) umap[total] = i;
                 else {
-                    ans = max(ans, umap[total]-i);
+                    ans = max(ans, i-umap[total]);
                 }    
             }
         }
