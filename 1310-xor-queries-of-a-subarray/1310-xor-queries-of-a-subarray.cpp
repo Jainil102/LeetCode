@@ -8,10 +8,10 @@ public:
         vector<int> ans;
         for(int i=0; i<queries.size(); i++){
             if(queries[i][0] == 0){
-                ans.push_back(arr[queries[i][1]]);
+                ans.emplace_back(arr[queries[i][1]]);
             }
             else{
-                ans.push_back(arr[queries[i][1]]^arr[queries[i][0]-1]);
+                ans.emplace_back(arr[queries[i][1]]^arr[queries[i][0]-1]);
             }
         }
         
