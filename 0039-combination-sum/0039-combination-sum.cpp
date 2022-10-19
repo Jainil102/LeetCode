@@ -8,10 +8,9 @@ public:
             return;
         }
         
+        solve(arr, i+1, target, temp, ans);
         temp.push_back(arr[i]);
         solve(arr, i, target-arr[i], temp, ans);
-        temp.pop_back();
-        solve(arr, i+1, target, temp, ans);
     }
     
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
