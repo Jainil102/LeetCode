@@ -49,20 +49,12 @@ class Solution
         Node* s = head;
         Node* f = head;
         
-        do{
-            if(f==NULL || f->next==NULL) return false;
-            
+        while(f!=NULL && f->next!=NULL){
             s = s->next;
             f = (f->next)->next;
-        }while(s!=f);
-        
-        f = head;
-        while(s!=f){
-            s = s->next;
-            f = f->next;
+            if(s == f) return true;
         }
-        
-        return s;
+        return false;
     }
 };
 
